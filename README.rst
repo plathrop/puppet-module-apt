@@ -8,7 +8,7 @@ automatically update your apt/aptitude index every Puppet run. To
 over-ride the default sources.list, add "sources.list.$fqdn" or
 "sources.list.site" to "modules/site/files/apt".
 
-To add sources, use apt::source like so:
+To add sources, use apt::source like so::
 
   apt::source {
     "site-testing-lenny":
