@@ -1,0 +1,12 @@
+Source: puppet-module-apt
+Section: misc
+Priority: extra
+Maintainer: Paul Lathrop <plathrop@digg.com>
+Build-Depends: debhelper (>= 5)
+Standards-Version: 3.7.2
+
+Package: puppet-module-apt
+Architecture: all
+Depends: puppet-common
+Description: Puppet module for configuring the Apt package manager.
+ Puppet module for configuring the Apt package manager.
