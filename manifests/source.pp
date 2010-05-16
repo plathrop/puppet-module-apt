@@ -17,6 +17,6 @@ define apt::source($enable=true, $url="", $dist="", $sections="main contrib non-
         false => absent,
         default => present,
       },
-      notify => Exec["update_apt_index"];
+      notify => Exec["apt::update-index"];
   }
 }
