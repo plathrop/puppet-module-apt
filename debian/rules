@@ -18,10 +18,10 @@ install:
 	dh_compress
 	dh_installdeb
 	dh_gencontrol
-	dh_md5sums
 	dh_installdirs
 
 	dh_install
+	dh_md5sums
 	dh_builddeb
 
 .PHONY: build clean install binary-indep
