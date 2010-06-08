@@ -8,6 +8,7 @@ Standards-Version: 3.8.4
 
 Package: puppet-module-apt
 Architecture: all
-Depends: puppet-common
+Depends: ${misc:Depends}, puppet-common
 Description: Puppet module for configuring the Apt package manager.
- Puppet module for configuring the Apt package manager.
+ This module allows you to configure Debian sources.list files with
+ Puppet.
