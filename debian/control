@@ -2,8 +2,9 @@ Source: puppet-module-apt
 Section: misc
 Priority: extra
 Maintainer: Paul Lathrop <plathrop@digg.com>
+Uploaders: Ian Eure <ian@simplegeo.com>
 Build-Depends: debhelper (>= 5)
-Standards-Version: 3.7.2
+Standards-Version: 3.8.4
 
 Package: puppet-module-apt
 Architecture: all
