@@ -1,3 +1,11 @@
+puppet-module-apt (1.0.2) unstable; urgency=low
+
+  * Update standards-version.
+  * Fix missing checksums.
+  * Add source format.
+
+ -- Ian Eure <ian@simplegeo.com>  Tue, 08 Jun 2010 11:29:53 -0700
+
 puppet-module-apt (1.0.1) stable; urgency=low
 
   * Fix reference to update_apt_index 
