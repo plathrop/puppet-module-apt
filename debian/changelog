@@ -1,3 +1,12 @@
+puppet-module-apt (1.0.13) lucid; urgency=low
+
+  [ Paul Lathrop ]
+  * Add support for including source packages or not.
+
+  [ SimpleGeo Nerds ]
+
+ -- SimpleGeo Nerds <nerds@simplegeo.com>  Thu, 15 Jul 2010 23:13:57 +0000
+
 puppet-module-apt (1.0.11) lucid; urgency=low
 
   * UNRELEASED
