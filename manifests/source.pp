@@ -1,4 +1,4 @@
-define apt::source($enable=true, $url="", $dist="", $sections="main contrib non-free")
+define apt::source($enable=true, $deb_src=true, $url="", $dist="", $sections="main contrib non-free")
 {
   include apt
 
@@ -7,11 +7,16 @@ define apt::source($enable=true, $url="", $dist="", $sections="main contrib non-
     default => $dist,
   }
 
+  $list=inline_template("deb $url $distribution $sections
+<% if deb_src -%>
+deb-src $url $distribution $sections
+<% end %>")
+
   file {
     "/etc/apt/sources.list.d/${name}.list":
       mode => 0644,
       content => $enable ? {
-        true => "deb $url $distribution $sections\ndeb-src $url $distribution $sections\n",
+        true => "${list}",
         default => undef,
       },
       ensure => $enable ? {
