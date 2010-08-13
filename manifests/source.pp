@@ -7,30 +7,24 @@ define apt::source($enable=true, $deb_src=true, $url="", $dist="",
     default => $dist,
   }
 
-  $keyexec = $key ? {
-    '': "noop",
-    default: "import-key"
-  }
-
   $list=inline_template("deb $url $distribution $sections
 <% if deb_src -%>
 deb-src $url $distribution $sections
 <% end %>")
 
   exec {
-    "import-key":
+    "import-${url}-key":
       path => "/usr/bin",
       user => root,
       command => "echo ${key} | apt-key add -";
-
-    "noop":
-      path => "/bin",
-      command => "true";
   }
 
   file {
     "/etc/apt/sources.list.d/${name}.list":
-      require => Exec[$keyexec],
+      require => $key ? {
+        '' => undef,
+        default => Exec["import-${url}-key"]
+      },
       mode => 0644,
       content => $enable ? {
         true => "${list}",
