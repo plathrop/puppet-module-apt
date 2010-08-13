@@ -1,5 +1,5 @@
-define apt::source($enable=true, $deb_src=true, $url="", $dist="", $sections="main contrib non-free")
-{
+define apt::source($enable=true, $deb_src=true, $url="", $dist="",
+                   $sections="main contrib non-free") {
   include apt
 
   $distribution = $dist ? {
