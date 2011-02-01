@@ -14,7 +14,7 @@ deb-src $url $distribution $sections
 
   exec {
     "import-${url}-key":
-      path => "/usr/bin",
+      path => ["/bin", "/usr/bin"],
       user => root,
       command => "echo ${key} | apt-key add -";
   }
