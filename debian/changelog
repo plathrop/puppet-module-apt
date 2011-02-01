@@ -1,3 +1,9 @@
+puppet-module-apt (1.0.17) lucid; urgency=low
+
+  * UNRELEASED
+
+ -- SimpleGeo Nerds <nerds@simplegeo.com>  Tue, 01 Feb 2011 01:51:47 +0000
+
 puppet-module-apt (1.0.16) lucid; urgency=low
 
   [ Paul Lathrop ]
