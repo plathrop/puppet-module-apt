@@ -12,11 +12,13 @@ define apt::source($enable=true, $deb_src=true, $url="", $dist="",
 deb-src $url $distribution $sections
 <% end %>")
 
-  exec {
-    "import-${url}-key":
-      path => ["/bin", "/usr/bin"],
-      user => root,
-      command => "echo ${key} | apt-key add -";
+  if $key != "" {
+    exec {
+      "import-${url}-key":
+        path => ["/bin", "/usr/bin"],
+        user => root,
+        command => "echo ${key} | apt-key add -";
+    }
   }
 
   file {
