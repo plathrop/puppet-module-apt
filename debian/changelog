@@ -1,3 +1,17 @@
+puppet-module-apt (1.0.15) lucid; urgency=low
+
+  [ Ian Eure ]
+  * Wrap lines.
+  * Add repository key support.
+  * Clean up, per Paul's suggestions.
+
+  [ Paul Lathrop ]
+  * This module works with puppet 2.6.1
+
+  [ SimpleGeo Nerds ]
+
+ -- SimpleGeo Nerds <nerds@simplegeo.com>  Tue, 01 Feb 2011 00:02:08 +0000
+
 puppet-module-apt (1.0.14) lucid; urgency=low
 
   * UNRELEASED
