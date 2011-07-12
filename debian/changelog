@@ -1,3 +1,12 @@
+puppet-module-apt (1.0.20) maverick; urgency=low
+
+  [ Paul Lathrop ]
+  * Fix debian install file so apt::key gets installed.
+
+  [ SimpleGeo Nerds ]
+
+ -- SimpleGeo Nerds <nerds@simplegeo.com>  Tue, 12 Jul 2011 00:20:49 +0000
+
 puppet-module-apt (1.0.19) maverick; urgency=low
 
   [ Paul Lathrop ]
