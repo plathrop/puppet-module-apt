@@ -1,4 +1,3 @@
 README.rst metadata.json usr/share/puppet/modules/apt
 files/sources.list.lenny usr/share/puppet/modules/apt/files
-manifests/init.pp manifests/source.pp usr/share/puppet/modules/apt/manifests
-
+manifests/init.pp manifests/source.pp manifests/key.pp usr/share/puppet/modules/apt/manifests
