@@ -1,3 +1,12 @@
+puppet-module-apt (1.0.22) maverick; urgency=low
+
+  [ Paul Lathrop ]
+  * add maverick sources.list
+
+  [ SimpleGeo Nerds ]
+
+ -- SimpleGeo Nerds <nerds@simplegeo.com>  Mon, 22 Aug 2011 22:16:42 +0000
+
 puppet-module-apt (1.0.20) maverick; urgency=low
 
   [ Paul Lathrop ]
