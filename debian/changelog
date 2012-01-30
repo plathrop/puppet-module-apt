@@ -1,3 +1,10 @@
+puppet-module-apt (1.0.27) maverick; urgency=low
+
+  [ Paul Lathrop ]
+  * Correctly install files for apt::ppa type
+
+ -- Yammer APT Signing Key <root@yammer-inc.com>  Mon, 30 Jan 2012 15:10:24 +0000
+
 puppet-module-apt (1.0.26) maverick; urgency=low
 
   [ Paul Lathrop ]
