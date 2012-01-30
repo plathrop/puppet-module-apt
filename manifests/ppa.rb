@@ -12,6 +12,6 @@ define 'apt::ppa' do
 
   create_resource('exec', command, {
     :creates => creates,
-    :require => ['Package[python-software-properties]', 'File[sources.list.d]']
+    :require => ['Package[python-software-properties]']
   })
 end

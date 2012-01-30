@@ -1,3 +1,10 @@
+puppet-module-apt (1.0.28) maverick; urgency=low
+
+  [ Paul Lathrop ]
+  * Remove superfluous require.
+
+ -- Yammer APT Signing Key <root@yammer-inc.com>  Mon, 30 Jan 2012 15:14:00 +0000
+
 puppet-module-apt (1.0.27) maverick; urgency=low
 
   [ Paul Lathrop ]
