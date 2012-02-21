@@ -1,3 +1,9 @@
+puppet-module-apt (1.0.31) unstable; urgency=low
+
+  * Fix up debian package installation.
+
+ -- Yammer APT Signing Key <root@yammer-inc.com>  Tue, 21 Feb 2012 11:10:17 -0800
+
 puppet-module-apt (1.0.30) maverick; urgency=low
 
   * Add sources.list for lucid.
