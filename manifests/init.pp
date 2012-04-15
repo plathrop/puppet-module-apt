@@ -10,9 +10,9 @@ class apt {
     /^aptitude$/ => "aptitude"
   }
 
-  $codename = $lsbdistcodename ? {
-    "" => $operatingsystem,
-    default => $lsbdistcodename
+  $codename = $::lsbdistcodename ? {
+    "" => $::operatingsystem,
+    default => $::lsbdistcodename
   }
 
   exec {
