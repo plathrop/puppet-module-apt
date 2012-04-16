@@ -10,10 +10,12 @@ class apt {
     /^aptitude$/ => "aptitude"
   }
 
-  $codename = $::lsbdistcodename ? {
-    "" => $::operatingsystem,
-    default => $::lsbdistcodename
-  }
+# -*- coding: utf-8 -*-
+#
+# © 2010 Digg, Inc.
+# © 2011-2012 Paul Lathrop
+# Author: Paul Lathrop <paul@tertiusfamily.net>
+#
 
   exec {
     "apt::update-index":
@@ -26,12 +28,6 @@ class apt {
     "/etc/apt":
       mode => 0755,
       ensure => directory;
-    "/etc/apt/sources.list":
-      mode => 0644,
-      source => ["puppet:///modules/site/apt/sources.list.fqdn",
-                 "puppet:///modules/site/apt/sources.list.site",
-                 "puppet:///modules/apt/sources.list.${codename}"],
-      notify => Exec["apt::update-index"];
   }
 
   @file {
