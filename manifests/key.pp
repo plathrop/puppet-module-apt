@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 #
-# © 2012 Digg, Inc., Paul Lathrop
+# © 2010 Digg, Inc.
+# © 2011-2012 Paul Lathrop
 # Author: Paul Lathrop <paul@tertiusfamily.net>
 #
 
