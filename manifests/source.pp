@@ -1,33 +1,24 @@
-define apt::source($enable=true, $deb_src=true, $url="", $dist="",
-                   $sections="main contrib non-free", $key="") {
-  include apt
+# -*- coding: utf-8 -*-
+#
+# © 2010 Digg, Inc.
+# © 2011,2012 Paul Lathrop
+# Author: Paul Lathrop <paul@tertiusfamily.net>
+#
 
-  $distribution = $dist ? {
-    "" => $name,
-    default => $dist,
-  }
+define apt::source($enable=true, $deb_src=true, $url, $dists=['stable'],
+                   $sections=['main', 'contrib', 'non-free']) {
+  include apt
 
   $list=inline_template("deb $url $distribution $sections
 <% if deb_src -%>
 deb-src $url $distribution $sections
 <% end %>")
 
-  if $key != "" {
-    exec {
-      "import-${url}-key":
-        path => ["/bin", "/usr/bin"],
-        user => root,
-        command => "apt-key add ${key}";
-    }
-  }
-
   file {
     "/etc/apt/sources.list.d/${name}.list":
-      require => $key ? {
-        '' => undef,
-        default => Exec["import-${url}-key"]
-      },
-      mode => 0644,
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0644',
       content => $enable ? {
         true => "${list}",
         default => undef,
@@ -39,3 +30,7 @@ deb-src $url $distribution $sections
       notify => Exec["apt::update-index"];
   }
 }
+
+# Local Variables:
+# puppet-indent-level: 2
+# End:
