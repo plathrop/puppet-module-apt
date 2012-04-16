@@ -1,4 +1,4 @@
 deb <%= scope.lookupvar('url') -%> <%= scope.lookupvar('dists').join(',') -%> <%= scope.lookupvar('sections').join(',') %>
 <% if scope.lookupvar('deb_src') -%>
-deb <%= scope.lookupvar('url') -%> <%= scope.lookupvar('dists').join(',') -%> <%= scope.lookupvar('sections').join(',') %>
+deb-src <%= scope.lookupvar('url') -%> <%= scope.lookupvar('dists').join(',') -%> <%= scope.lookupvar('sections').join(',') %>
 <% end -%>
