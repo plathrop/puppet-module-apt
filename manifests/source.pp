@@ -5,14 +5,20 @@
 # Author: Paul Lathrop <paul@tertiusfamily.net>
 #
 
-define apt::source($enable=true, $deb_src=true, $url, $dists=['stable'],
-                   $sections=['main', 'contrib', 'non-free']) {
+define apt::source (
+  $url,
+  $enable=true,
+  $deb_src=true,
+  $dists=['stable'],
+  $sections=['main', 'contrib', 'non-free'])
+{
   include apt
 
-  $list=inline_template("deb $url $distribution $sections
-<% if deb_src -%>
-deb-src $url $distribution $sections
-<% end %>")
+  if ! ($enable in [ true, false ]) {
+    fail('Valid values for enable: true, false')
+  }
+
+  $list = template('apt/source.list.erb')
 
   file {
     "/etc/apt/sources.list.d/${name}.list":
