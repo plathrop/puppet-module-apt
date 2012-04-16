@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 #
 # © 2010 Digg, Inc.
-# © 2011-2012 Paul Lathrop
+# © 2011,2012 Paul Lathrop
 # Author: Paul Lathrop <paul@tertiusfamily.net>
 #
 
-class apt ($provider='apt-get') {
+class apt {
   exec { 'apt::update-index':
-      command   => "/usr/bin/${apt_provider} update",
+      command   => "/usr/bin/apt-get update",
       logoutput => on_failure,
       user      => root,
   }
