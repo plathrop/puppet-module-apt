@@ -14,7 +14,7 @@ define apt::source (
 {
   include apt
 
-  if ! ($enable in [ true, false ]) {
+  if ! ("$enable" in [ 'true', 'false' ]) {
     fail('Valid values for enable: true, false')
   }
 
