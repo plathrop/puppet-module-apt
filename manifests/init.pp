@@ -5,6 +5,22 @@
 # Author: Paul Lathrop <paul@tertiusfamily.net>
 #
 
+# apt
+# @contact: paul@tertiusfamily.net
+#
+# == Description
+#    Module to configure apt sources and their associated keys.
+#
+# == Sample Usage
+#    $puppetlabs_apt_key_id = '4BD6EC30'
+#    apt::key { $::puppetlabs_apt_key_id: ensure => present; }
+#    apt::source { 'puppetlabs':
+#      url      => 'http://apt.puppetlabs.com',
+#      dists    => [$lsbistcodename],
+#      sections => 'main',
+#      require  => Apt::Key[$puppetlabs_apt_key_id],
+#    }
+
 class apt {
   exec { 'apt::update-index':
       command   => "/usr/bin/apt-get update",
