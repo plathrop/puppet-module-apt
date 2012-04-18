@@ -25,20 +25,20 @@ class apt {
   exec { 'apt::update-index':
       command   => "/usr/bin/apt-get update",
       logoutput => on_failure,
-      user      => root,
+      user      => 'root',
   }
 
   file { '/etc/apt':
     owner  => 'root',
     group  => 'root',
-    mode   => 0755,
+    mode   => '0755',
     ensure => directory,
   }
 
   @file { '/etc/apt/sources.list.d':
     owner => 'root',
     group => 'root',
-    mode => 0755,
+    mode => '0755',
     ensure => directory,
   }
 
