@@ -22,3 +22,12 @@ apt::key { '1BB943DB':
   keyserver => 'keyserver.ubuntu.com'
 }
 ```
+
+To add apt preferences to `/etc/apt/preferences.d`:
+
+```puppet
+apt::preference { 'backports-pin':
+  ensure => present,
+  source => 'puppet:///modules/site/backport-pin',
+}
+```

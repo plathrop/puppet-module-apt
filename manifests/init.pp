@@ -41,6 +41,13 @@ class apt {
     mode => 0755,
     ensure => directory,
   }
+
+  @file { '/etc/apt/preferences.d':
+    owner => 'root',
+    group => 'root',
+    mode => '0755',
+    ensure => directory,
+  }
 }
 
 # Local Variables:
