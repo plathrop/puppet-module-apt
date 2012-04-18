@@ -20,7 +20,7 @@ define apt::preference (
   }
 
   file {
-    '/etc/apt/preferences.d/${name}.pref':
+    "/etc/apt/preferences.d/${name}.pref":
       owner   => 'root',
       group   => 'root',
       mode    => '0644',
