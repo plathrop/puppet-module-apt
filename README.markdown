@@ -1,7 +1,7 @@
 Puppet module for configuring the apt package manager. Currently only
 tested on Ubuntu.
 
-Install into your <puppet module_path>/apt
+Install into `puppet module_path/apt`
 
 The module will automatically update your apt index every Puppet run.
 
