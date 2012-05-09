@@ -1,37 +1,26 @@
-# Copyright (c) 2011 Evolving Web Inc.
-
-# Permission is hereby granted, free of charge, to any person obtaining a copy
-# of this software and associated documentation files (the "Software"), to deal
-# in the Software without restriction, including without limitation the rights
-# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-# copies of the Software, and to permit persons to whom the Software is
-# furnished to do so, subject to the following conditions:
-
-# The above copyright notice and this permission notice shall be included in
-# all copies or substantial portions of the Software.
-
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-# THE SOFTWARE.
-
-define 'apt::ppa' do
+define 'apt::ppa', :ensure do
   include 'apt'
 
-  command = "add-apt-repository #{@name}"
+  command = "/usr/bin/add-apt-repository #{@name}"
   _, team, ppa = @name.split(/[:\/]/,3)
 
-  dist = scope.lookupvar('lsbdistcodename')
-
-  creates = "#{scope.lookupvar('apt::root')}/sources.list.d/#{team}-#{ppa}-#{dist}.list"
+  dist = scope.lookupvar('::lsbdistcodename')
+  creates = "/etc/apt/sources.list.d/#{team}-#{ppa}-#{dist}.list"
 
   package 'python-software-properties', :ensure => 'present'
 
-  create_resource('exec', command, {
-    :creates => creates,
-    :require => ['Package[python-software-properties]']
-  })
+  case @ensure
+  when 'present'
+    create_resource('exec', command, {
+        :creates => creates,
+        :require => ['Package[python-software-properties]'],
+        :notify  => ['Exec[apt::update-index]']
+      })
+  when 'absent'
+    create_resource('file', creates, {
+        :ensure  => 'absent'
+      })
+  else
+    fail('Valid values for ensure: present or absent')
+  end
 end
