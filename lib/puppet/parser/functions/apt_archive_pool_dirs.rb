@@ -7,7 +7,7 @@
 
 module Puppet::Parser::Functions
   newfunction(:apt_archive_pool_dirs, :type => :rvalue) do |args|
-    base_dir = args[0] + File::SEPARATOR + 'pool'
+    base_dir = args[0]
     sections = args[1]
     sections.map {|section|
       [base_dir, section].join(File::SEPARATOR)

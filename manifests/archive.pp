@@ -94,8 +94,8 @@ define apt::archive (
     $_top_dirs       = [$_base_dir, $_cache_dir, $_dists_base_dir, $_pool_base_dir]
 
     ### Per-{dist,section,architecture} directories
-    $_dist_dirs = apt_archive_dist_dirs($_base_dir, $dists, $sections, $architectures)
-    $_pool_dirs = apt_archive_pool_dirs($_base_dir, $sections)
+    $_dist_dirs = apt_archive_dist_dirs($_dists_base_dir, $dists, $sections, $architectures)
+    $_pool_dirs = apt_archive_pool_dirs($_pool_base_dir, $sections)
 
     ######################################
     ### Create the directory structure ###
