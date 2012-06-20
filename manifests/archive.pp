@@ -68,7 +68,7 @@ define apt::archive (
     #######################
     ### Sanity checking ###
     #######################
-    if ! $ensure in ['present', 'absent'] {
+    if ! ($ensure in ['present', 'absent']) {
         fail('Valid values for ensure: present, absent')
     }
 
