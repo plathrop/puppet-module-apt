@@ -1,0 +1,22 @@
+Dir {
+   ArchiveDir "<%= scope.lookupvar('_base_dir') -%>";
+   CacheDir "<%= scope.lookupvar('cache_dir') -%>";
+};
+
+Default {
+   Packages::Compress ". gzip bzip2";
+   Sources::Compress ". gzip bzip2";
+   Contents::Compress ". gzip bzip2";
+};
+
+TreeDefault {
+    Directory "pool/$(SECTION)";
+    SrcDirectory "pool/$(SECTION)";
+};
+
+<% for dist in scope.lookupvar('dists') -%>
+Tree "dists/<%= dist -%>" {
+    Sections "<%= scope.lookupvar('sections').join(' ') -%>";
+    Architectures "<%= scope.lookupvar('architectures').join(' ') -%>";
+};
+<% end -%>
