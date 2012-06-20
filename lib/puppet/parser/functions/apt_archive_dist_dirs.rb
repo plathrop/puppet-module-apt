@@ -10,7 +10,7 @@ def arch_dirname(arch)
 end
 
 module Puppet::Parser::Functions
-  newfunction(:apt_arch_dist_dirs, :type => :rvalue) do |args|
+  newfunction(:apt_archive_dist_dirs, :type => :rvalue) do |args|
     base_dir = args[0] + 'dists/'
     dists = args[1]
     sections = args[2]
