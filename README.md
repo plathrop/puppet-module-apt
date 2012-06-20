@@ -10,7 +10,7 @@ The module will automatically update your apt index every Puppet run.
 To add sources, use `apt::source`:
 
 ```puppet
-apt::source { 'site-testing-lenny':
+apt::source { 'site-testing-lucid':
     enable => true,
     url    => 'http://example.com/debian';
 }
