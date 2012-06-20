@@ -6,7 +6,7 @@
 ###
 
 def arch_dirname(arch)
-  ['all', 'source'].include?(arch) && arch || 'binary-' + arch
+  arch == 'source' ? arch : 'binary-' + arch
 end
 
 module Puppet::Parser::Functions
