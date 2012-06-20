@@ -28,13 +28,6 @@ class apt {
       user      => 'root',
   }
 
-  file { '/etc/apt':
-    owner  => 'root',
-    group  => 'root',
-    mode   => '0755',
-    ensure => directory,
-  }
-
   @file { '/etc/apt/sources.list.d':
     owner => 'root',
     group => 'root',
