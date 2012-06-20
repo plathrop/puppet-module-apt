@@ -6,7 +6,7 @@
 ###
 
 module Puppet::Parser::Functions
-  newfunction(:apt_archive_dist_dirs, :type => :rvalue) do |args|
+  newfunction(:apt_archive_pool_dirs, :type => :rvalue) do |args|
     base_dir = args[0] + 'pool/'
     sections = args[1]
     sections.map {|section|
