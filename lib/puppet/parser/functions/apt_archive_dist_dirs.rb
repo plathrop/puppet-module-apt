@@ -18,9 +18,11 @@ module Puppet::Parser::Functions
     dists.map {|dist|
       sections.map {|section|
         architectures.map {|arch|
+          [] << [base_dir, dist].join(File::SEPARATOR) <<
+          [base_dir, dist, section].join(File::SEPARATOR) <<
           [base_dir, dist, section, arch_dirname(arch)].join(File::SEPARATOR)
         }
       }
-    }.flatten
+    }.flatten.uniq
   end
 end
