@@ -11,7 +11,7 @@ end
 
 module Puppet::Parser::Functions
   newfunction(:apt_archive_dist_dirs, :type => :rvalue) do |args|
-    base_dir = args[0] + 'dists/'
+    base_dir = args[0] + File::SEPARATOR + 'dists'
     dists = args[1]
     sections = args[2]
     architectures = args[3]
