@@ -1,3 +1,9 @@
+puppet-module-apt (1.1.0) unstable; urgency=low
+
+  * Major refactorings.
+
+ -- Paul Lathrop <paul@tertiusfamily.net>  Wed, 20 Jun 2012 10:17:13 -0700
+
 puppet-module-apt (1.0.32) unstable; urgency=low
 
   * Also correctly install ruby manifests.

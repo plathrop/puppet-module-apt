@@ -1,5 +1,5 @@
 usr/share/puppet/modules
 usr/share/puppet/modules/apt
-usr/share/puppet/modules/apt/files
+usr/share/puppet/modules/apt/lib
 usr/share/puppet/modules/apt/manifests
-
+usr/share/puppet/modules/apt/templates

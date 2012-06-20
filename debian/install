@@ -1,2 +1,4 @@
-README.rst metadata.json usr/share/puppet/modules/apt
+LICENSE README.md usr/share/puppet/modules/apt
+lib/* usr/share/puppet/modules/apt/lib
 manifests/* usr/share/puppet/modules/apt/manifests
+templates/* usr/share/puppet/modules/apt/templates
