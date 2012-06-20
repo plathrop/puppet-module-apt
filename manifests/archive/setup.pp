@@ -1,6 +1,8 @@
 ### -*- coding: utf-8 -*-
 ###
-### © 2012 Krux Digital, Inc. See LICENSE.md for details.
+### © 2012 Krux Digital, Inc. See manifests/archive/LICENSE.md for
+### details.
+###
 ### Author: Paul Lathrop <paul@krux.com>
 ###
 ###
