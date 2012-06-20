@@ -12,7 +12,7 @@ To add sources, use `apt::source`:
 ```puppet
 apt::source { 'site-testing-lenny':
     enable => true,
-    url => 'http://example.com/debian';
+    url    => 'http://example.com/debian';
 }
 ```
 
