@@ -118,8 +118,9 @@ define apt::archive (
         purge   => false,
     }
 
-    # Use checksum => mtime here so that the exec below can subscribe
-    # to changes in the pool directory.
+    # Use checksum => mtime here to help performance by not
+    # checksumming the entire contents of the directory (this may be
+    # an out-dated habit)
     file { $_pool_dirs:
         ensure   => $_dir_ensure,
         checksum => mtime,
