@@ -23,7 +23,7 @@
 ###                 repository. Defaults to ["main"].
 ###
 ###    [$architectures]  Array of architectures to provide packages
-###                      for. Defaults to ["i385", "amd64", "all",
+###                      for. Defaults to ["i386", "amd64", "all",
 ###                      "source"]
 ###
 ###    [$ensure]  Whether to create or delete the package
@@ -118,6 +118,8 @@ define apt::archive (
         purge   => false,
     }
 
+    # Use checksum => mtime here so that the exec below can subscribe
+    # to changes in the pool directory.
     file { $_pool_dirs:
         ensure   => $_dir_ensure,
         checksum => mtime,
