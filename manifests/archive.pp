@@ -150,7 +150,7 @@ define apt::archive (
         owner         => $owner,
         group         => $group,
         mode          => $mode,
-        subscribe     => File[$_pool_dirs],
+        require       => File[$_pool_dirs],
     }
 
     ######################################
@@ -161,7 +161,6 @@ define apt::archive (
         user        => $owner,
         refreshonly => true,
         require     => Class['apt::archive::setup'],
-        subscribe   => File[$_archive_conf, $_pool_dirs],
-        before      => Apt::Archive::Release[$dists],
+        subscribe   => File[$_archive_conf],
     }
 }

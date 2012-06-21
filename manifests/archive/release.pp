@@ -76,9 +76,9 @@ define apt::archive::release (
     $_release_dir   = "${repository}/dists/${name}"
     $_release_fname = "${_release_dir}/Release"
     exec { "apt-ftparchive release ${repository}/dists/${name}":
-        command     => "/usr/bin/apt-ftparchive -c ${_release_conf} release ${_release_dir} > ${_release_fname}",
-        user        => $owner,
-        refreshonly => true,
-        require     => Class['apt::archive::setup'],
+        command => "/usr/bin/apt-ftparchive -c ${_release_conf} release ${_release_dir} | tee ${_release_fname}",
+        user    => $owner,
+        creates => $_release_fname,
+        require => Class['apt::archive::setup'],
     }
 }
