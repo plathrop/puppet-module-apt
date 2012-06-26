@@ -35,15 +35,13 @@
 ###          sets the execute bit on directories.)
 ###
 ###  [$keyid] ID of a GPG key. This key will be used to sign the
-###           release metadata. The key must be installed in the
-###           GPG keychain of $owner. The key *must not* be protected
-###           by a passphrase. See http://bit.ly/MnisxJ for
-###           instructions on how to generate a signing subkey for
-###           this purpose. You should strongly consider setting an
-###           expiration for this subkey. The public key will be
-###           exported to the root of the archive as
-###           'repo.key.asc'. If this parameter is not provided, the
-###           release metadata will not be signed.
+###           release metadata. The key must be installed in the GPG
+###           keychain of $owner. The key *must not* be protected by a
+###           passphrase. See http://bit.ly/MnisxJ for instructions on
+###           how to generate a signing subkey for this purpose. You
+###           should strongly consider setting an expiration for this
+###           subkey. If this parameter is not provided, the release
+###           metadata will not be signed.
 ###
 ### == Actions:
 ###
@@ -101,7 +99,6 @@ define apt::archive::release (
             command     => "/usr/bin/gpg ${_gpg_key} --output ${_sig_fname} --detach-sign --armor ${_release_fname}",
             user        => $owner,
             creates     => $_sig_fname,
-            refreshonly => true,
             subscribe   => Exec["apt-ftparchive release ${repository}/dists/${name}"],
         }
     }
