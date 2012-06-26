@@ -180,4 +180,13 @@ define apt::archive (
         require     => Class['apt::archive::setup'],
         subscribe   => File[$_archive_conf],
     }
+
+    if $keyid {
+        $_pubkey_fname = "${_base_dir}/repo.key.asc"
+        exec { "gpg export public key for ${name}":
+            command => "/usr/bin/gpg --output ${_pubkey_fname} --export --armor ${keyid}",
+            user    => $owner,
+            creates => $_pubkey_fname,
+        }
+    }
 }
