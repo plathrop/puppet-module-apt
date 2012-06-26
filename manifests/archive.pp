@@ -42,6 +42,17 @@
 ###  [$base_dir] The base directory of the package
 ###              repository. Defaults to $name.
 ###
+###  [$keyid] ID of a GPG key. This key will be used to sign the
+###           release metadata. The key must be installed in the
+###           GPG keychain of $owner. The key *must not* be protected
+###           by a passphrase. See http://bit.ly/MnisxJ for
+###           instructions on how to generate a signing subkey for
+###           this purpose. You should strongly consider setting an
+###           expiration for this subkey. The public key will be
+###           exported to the root of the archive as
+###           'repo.key.asc'. If this parameter is not provided, the
+###           release metadata will not be signed.
+###
 ### == Actions:
 ###
 ###   - Create the directory structure of the package repository.
@@ -49,6 +60,11 @@
 ###   - Generate a configuration file for apt-ftparchive.
 ###
 ###   - Run apt-ftparchive to generate the repository metadata.
+###
+###   - Optionally, sign the repository metadata.
+###
+###   - Optionally, export the public part of the key used to sign the
+###     repository metadata.
 ###
 ### == Requires:
 ###
@@ -62,7 +78,9 @@ define apt::archive (
     $owner         = 'root',
     $group         = 'root',
     $mode          = '0644',
-    $base_dir      = false
+    $base_dir      = false,
+    $sign          = false,
+    $keyid         = false
 ) {
     #######################
     ### Sanity checking ###
@@ -156,7 +174,7 @@ define apt::archive (
     ### Create the repository metadata ###
     ######################################
     exec { "apt-ftparchive generate ${_base_dir}":
-        command     => "/usr/bin/apt-ftparchive generate $_archive_conf",
+        command     => "/usr/bin/apt-ftparchive generate ${_archive_conf}",
         user        => $owner,
         refreshonly => true,
         require     => Class['apt::archive::setup'],

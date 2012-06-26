@@ -34,6 +34,17 @@
 ###          contents. Defaults to '0644' (remember that Puppet always
 ###          sets the execute bit on directories.)
 ###
+###  [$keyid] ID of a GPG key. This key will be used to sign the
+###           release metadata. The key must be installed in the
+###           GPG keychain of $owner. The key *must not* be protected
+###           by a passphrase. See http://bit.ly/MnisxJ for
+###           instructions on how to generate a signing subkey for
+###           this purpose. You should strongly consider setting an
+###           expiration for this subkey. The public key will be
+###           exported to the root of the archive as
+###           'repo.key.asc'. If this parameter is not provided, the
+###           release metadata will not be signed.
+###
 ### == Actions:
 ###
 ###   - Create the configuration file for the 'apt-ftparchive release'
@@ -52,7 +63,8 @@ define apt::archive::release (
     $ensure        = present,
     $owner         = 'root',
     $group         = 'root',
-    $mode          = '0644'
+    $mode          = '0644',
+    $keyid         = false
 ) {
     ##########################
     ### Internal Variables ###
@@ -70,9 +82,9 @@ define apt::archive::release (
         mode    => $mode,
     }
 
-    #################################
-    ### Generate the release file ###
-    #################################
+    ########################################
+    ### Generate & sign the release file ###
+    ########################################
     $_release_dir   = "${repository}/dists/${name}"
     $_release_fname = "${_release_dir}/Release"
     exec { "apt-ftparchive release ${repository}/dists/${name}":
@@ -80,5 +92,17 @@ define apt::archive::release (
         user    => $owner,
         creates => $_release_fname,
         require => Class['apt::archive::setup'],
+    }
+
+    if $keyid {
+        $_sig_fname = "${_release_fname}.gpg"
+        $_gpg_key   = "--default-key ${keyid}"
+        exec { "gpg sign release ${name}":
+            command     => "/usr/bin/gpg ${_gpg_key} --output ${_sig_fname} --detach-sign --armor ${_release_fname}",
+            user        => $owner,
+            creates     => $_sig_fname,
+            refreshonly => true,
+            subscribe   => Exec["apt-ftparchive release ${repository}/dists/${name}"],
+        }
     }
 }
