@@ -13,26 +13,26 @@
 ###
 ### == Parameters:
 ###
-###    [$name]  The name of the dist to generate a Release file for.
+###  [$name] The name of the dist to generate a Release file for.
 ###
-###    [$repository]  The path to the package repository.
+###  [$repository] The path to the package repository.
 ###
-###    [$sections]  Array of 'sections' in the repository. Defaults to
-###                 ["main"].
+###  [$sections] Array of 'sections' in the repository. Defaults to
+###              ["main"].
 ###
-###    [$architectures]  Array of architectures in the
-###                      repository. Defaults to ["i385", "amd64",
-###                      "all", "source"]
+###  [$architectures] Array of architectures in the
+###                   repository. Defaults to ["i385", "amd64", "all",
+###                   "source"]
 ###
-###    [$owner]  Owner of the package repository directory and
-###              contents. Defaults to 'root'.
+###  [$owner] Owner of the package repository directory and
+###           contents. Defaults to 'root'.
 ###
-###    [$group]  Group of the package repository directory and
-###              contents. Defaults to 'root'.
+###  [$group] Group of the package repository directory and
+###           contents. Defaults to 'root'.
 ###
-###    [$mode]  Permissions for the package repository and
-###             contents. Defaults to '0644' (remember that Puppet
-###             always sets the execute bit on directories.)
+###  [$mode] Permissions for the package repository and
+###          contents. Defaults to '0644' (remember that Puppet always
+###          sets the execute bit on directories.)
 ###
 ### == Actions:
 ###

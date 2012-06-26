@@ -14,34 +14,33 @@
 ###
 ### == Parameters:
 ###
-###    [$name]  The base directory of the package repository, or a
-###             unique name for the repository, if $base_dir is set.
+###  [$name] The base directory of the package repository, or a unique
+###          name for the repository, if $base_dir is set.
 ###
-###    [$dists]  Array of distributions to provide packages for.
+###  [$dists] Array of distributions to provide packages for.
 ###
-###    [$sections]  Array of 'sections' to create in the
-###                 repository. Defaults to ["main"].
+###  [$sections] Array of 'sections' to create in the
+###              repository. Defaults to ["main"].
 ###
-###    [$architectures]  Array of architectures to provide packages
-###                      for. Defaults to ["i386", "amd64", "all",
-###                      "source"]
+###  [$architectures] Array of architectures to provide packages
+###                   for. Defaults to ["i386", "amd64", "all",
+###                   "source"]
 ###
-###    [$ensure]  Whether to create or delete the package
-###               repository. One of 'present' or 'absent'. Defaults
-###               to 'present'.
+###  [$ensure] Whether to create or delete the package repository. One
+###            of 'present' or 'absent'. Defaults to 'present'.
 ###
-###    [$owner]  Owner of the package repository directory and
-###              contents. Defaults to 'root'.
+###  [$owner] Owner of the package repository directory and
+###           contents. Defaults to 'root'.
 ###
-###    [$group]  Group of the package repository directory and
-###              contents. Defaults to 'root'.
+###  [$group] Group of the package repository directory and
+###           contents. Defaults to 'root'.
 ###
-###    [$mode]  Permissions for the package repository and
-###             contents. Defaults to '0644' (remember that Puppet
-###             always sets the execute bit on directories.)
+###  [$mode] Permissions for the package repository and
+###          contents. Defaults to '0644' (remember that Puppet always
+###          sets the execute bit on directories.)
 ###
-###    [$base_dir]  The base directory of the package
-###                 repository. Defaults to $name.
+###  [$base_dir] The base directory of the package
+###              repository. Defaults to $name.
 ###
 ### == Actions:
 ###
