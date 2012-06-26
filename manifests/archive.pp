@@ -79,7 +79,6 @@ define apt::archive (
     $group         = 'root',
     $mode          = '0644',
     $base_dir      = false,
-    $sign          = false,
     $keyid         = false
 ) {
     #######################
