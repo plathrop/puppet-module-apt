@@ -43,6 +43,9 @@
 ###           subkey. If this parameter is not provided, the release
 ###           metadata will not be signed.
 ###
+###  [$gpghome] GnuPG home directory. Defaults to the default for the
+###             gpg command (usually ~/.gnupg).
+###
 ### == Actions:
 ###
 ###   - Create the configuration file for the 'apt-ftparchive release'
@@ -62,12 +65,18 @@ define apt::archive::release (
     $owner         = 'root',
     $group         = 'root',
     $mode          = '0644',
-    $keyid         = false
+    $keyid         = false,
+    $gpghome       = false
 ) {
     ##########################
     ### Internal Variables ###
     ##########################
     $_release_conf = "${repository}/release.conf.${name}"
+
+    $_gpghome = $gpghome ? {
+        false   => '',
+        default => "--homedir ${gpghome}",
+    }
 
     #####################################
     ### Create the configuration file ###
@@ -96,7 +105,7 @@ define apt::archive::release (
         $_sig_fname = "${_release_fname}.gpg"
         $_gpg_key   = "--default-key ${keyid}"
         exec { "gpg sign release ${name}":
-            command     => "/usr/bin/gpg ${_gpg_key} --output ${_sig_fname} --detach-sign --armor ${_release_fname}",
+            command     => "/usr/bin/gpg ${_gpghome} ${_gpg_key} --output ${_sig_fname} --detach-sign --armor ${_release_fname}",
             user        => $owner,
             creates     => $_sig_fname,
             subscribe   => Exec["apt-ftparchive release ${repository}/dists/${name}"],

@@ -53,6 +53,9 @@
 ###           'repo.key.asc'. If this parameter is not provided, the
 ###           release metadata will not be signed.
 ###
+###  [$gpghome] GnuPG home directory. Defaults to the default for the
+###             gpg command (usually ~/.gnupg).
+###
 ### == Actions:
 ###
 ###   - Create the directory structure of the package repository.
@@ -79,7 +82,8 @@ define apt::archive (
     $group         = 'root',
     $mode          = '0644',
     $base_dir      = false,
-    $keyid         = false
+    $keyid         = false,
+    $gpghome       = false
 ) {
     #######################
     ### Sanity checking ###
@@ -96,9 +100,14 @@ define apt::archive (
         default => $base_dir
     }
 
-    $_dir_ensure   = $ensure ? {
+    $_dir_ensure = $ensure ? {
         present => 'directory',
         absent  => 'absent'
+    }
+
+    $_gpghome = $gpghome ? {
+        false   => '',
+        default => "--homedir ${gpghome}",
     }
 
     $_archive_conf = "${_base_dir}/archive.conf"
@@ -166,6 +175,7 @@ define apt::archive (
         owner         => $owner,
         group         => $group,
         mode          => $mode,
+        gpghome       => $gpghome,
         require       => File[$_pool_dirs],
     }
 
@@ -183,7 +193,7 @@ define apt::archive (
     if $keyid {
         $_pubkey_fname = "${_base_dir}/repo.key.asc"
         exec { "gpg export public key for ${name}":
-            command => "/usr/bin/gpg --output ${_pubkey_fname} --export --armor ${keyid}",
+            command => "/usr/bin/gpg ${_gpghome} --output ${_pubkey_fname} --export --armor ${keyid}",
             user    => $owner,
             creates => $_pubkey_fname,
         }
