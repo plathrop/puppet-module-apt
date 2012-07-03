@@ -137,12 +137,14 @@ define apt::key(
         }
     }
 
-    if $ensure == absent and $id {
-        exec { "apt::key::${name}":
-            command => "${_apt_key} del ${_id}",
-            onlyif  => "${_apt_key} list | /bin/grep ${_id}"
+    if $ensure == absent {
+        if $id {
+            exec { "apt::key::${name}":
+                command => "${_apt_key} del ${_id}",
+                onlyif  => "${_apt_key} list | /bin/grep ${_id}"
+            }
+        } else {
+            fail("Cannot set absent on 'ensure': no 'id' specified. apt::key[${name}]")
         }
-    } else {
-        fail("Cannot set absent on 'ensure': no 'id' specified.")
     }
 }
