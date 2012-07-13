@@ -167,7 +167,10 @@ define apt::archive (
         mode    => $mode,
     }
 
-    apt::archive::release { $dists:
+    ### Prepend the archive name to each release to prevent duplicate
+    ### definition problems.
+    $_releases = split(inline_template("<%= dists.map { |dist| '${name}.' + dist }.join(',') %>"), ',')
+    apt::archive::release { $_releases:
         ensure        => $ensure,
         repository    => $_base_dir,
         sections      => $sections,

@@ -71,7 +71,9 @@ define apt::archive::release (
     ##########################
     ### Internal Variables ###
     ##########################
-    $_release_conf = "${repository}/release.conf.${name}"
+    $_name_components = split($name, '.')
+    $_my_name         = $_name_components[1]
+    $_release_conf = "${repository}/release.conf.${_my_name}"
 
     $_gpghome = $gpghome ? {
         false   => '',
@@ -92,9 +94,9 @@ define apt::archive::release (
     ########################################
     ### Generate & sign the release file ###
     ########################################
-    $_release_dir   = "${repository}/dists/${name}"
+    $_release_dir   = "${repository}/dists/${_my_name}"
     $_release_fname = "${_release_dir}/Release"
-    exec { "apt-ftparchive release ${repository}/dists/${name}":
+    exec { "apt-ftparchive release ${repository}/dists/${_my_name}":
         command => "/usr/bin/apt-ftparchive -c ${_release_conf} release ${_release_dir} | tee ${_release_fname}",
         user    => $owner,
         creates => $_release_fname,
@@ -108,7 +110,7 @@ define apt::archive::release (
             command     => "/usr/bin/gpg ${_gpghome} ${_gpg_key} --output ${_sig_fname} --detach-sign --armor ${_release_fname}",
             user        => $owner,
             creates     => $_sig_fname,
-            subscribe   => Exec["apt-ftparchive release ${repository}/dists/${name}"],
+            subscribe   => Exec["apt-ftparchive release ${repository}/dists/${_my_name}"],
         }
     }
 }
