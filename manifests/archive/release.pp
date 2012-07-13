@@ -71,7 +71,7 @@ define apt::archive::release (
     ##########################
     ### Internal Variables ###
     ##########################
-    $_name_components = split($name, '.')
+    $_name_components = split($name, '[.]')
     $_my_name         = $_name_components[1]
     $_release_conf = "${repository}/release.conf.${_my_name}"
 
