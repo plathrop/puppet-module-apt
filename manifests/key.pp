@@ -98,12 +98,12 @@ define apt::key(
     } else {
         ### apt-key adv --recv-keys downloads the key from a keyserver
         ### and adds it to the apt keyring.
-        $_action      = 'adv --recv-keys'
-        $_extra       = "--keyserver ${keyserver} ${_id}"
+        $_action      = "adv --recv-keys ${_id}"
+        $_extra       = "--keyserver ${keyserver}"
         ### We *have* to have the ID, so we can always check if it was
         ### imported.
         $_unless      = $_check_key
-        ### Since we have the idea, no need to use the jank 'file
+        ### Since we have the ID, no need to use the jank 'file
         ### exists' test - we can run this exec anytime the unless
         ### parameter indicates.
         $_refreshonly = false
