@@ -55,14 +55,6 @@ define apt::key(
         fail('Valid values for ensure: present or absent')
     }
 
-    if $url and ($id or $keyserver) {
-        ### The $ in single-quotes are actually intentional here.
-        notify { 'Ignoring $id and $keyserver':
-            message  => '$url is set, ignoring $id and $keyserver',
-            withpath => true,
-        }
-    }
-
     ##########################
     ### Internal Variables ###
     ##########################
