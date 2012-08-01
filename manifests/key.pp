@@ -98,8 +98,7 @@ define apt::key(
     } else {
         ### apt-key adv --recv-keys downloads the key from a keyserver
         ### and adds it to the apt keyring.
-        $_action      = "adv --recv-keys ${_id}"
-        $_extra       = "--keyserver ${keyserver}"
+        $_action      = "adv --keyserver ${keyserver} --recv-keys ${_id}"
         ### We *have* to have the ID, so we can always check if it was
         ### imported.
         $_unless      = $_check_key
