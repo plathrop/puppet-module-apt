@@ -1,3 +1,10 @@
+# Don't Use This
+Use the puppetlabs apt repo instead: https://github.com/puppetlabs/puppetlabs-apt/
+
+This is here purely for historical interest (and the fact that I'm 
+still using it in production several places where I haven't had a chance
+to switch!)
+
 # Introduction
 Puppet module providing configuration for the apt package manager and
 apt-related resources. Currently only tested on Ubuntu.
